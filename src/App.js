@@ -21,7 +21,11 @@ const App = () => {
 		const aboutInfo = {...infoStudent}
 		aboutInfo[e.target.id] = e.target.value
 		setInfoStudent(aboutInfo)
-		console.log(aboutInfo)
+		// console.log(aboutInfo)
+	}
+    const handleClick = ()=>{
+		console.log(infoStudent)
+
 	}
 
 	if (loader) {
@@ -76,7 +80,7 @@ const App = () => {
 								</div>
 							</div>
 							<div className='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
-								<button onClick={handleChange} className='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Create</button>
+								<button onClick={handleClick} className='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Create</button>
 							</div>
 						</div>
 					</div>
