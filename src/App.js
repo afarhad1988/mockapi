@@ -36,21 +36,22 @@ const App = () => {
 			group: student.group,
 			year: student.year,
 			phone: student.phone,
-			email:student.email
+			email:student.email,
+			id: student.id
 		})
 	}
 	const updateUser = async (e) =>{
 		e.preventDefault()
-		const updateUserNew = await axios.put(`https://6298e09cf2decf5bb74d8896.mockapi.io/students/${updateUserId}`, infoStudent)
-		const updateStudentList =  students.map(item=>item.id === updateUser.data.id ? updateUserNew.data : item)
-        setStudents(updateStudentList)
+        const updatedUser = await axios.put(`https://6298e09cf2decf5bb74d8896.mockapi.io/students/${updateUserId}`, infoStudent)
+		setStudents(students.map(item=> item.id === updatedUser.data.id ? updatedUser.data : item))
 		setIsEditing(false)
 		setInfoStudent({
 			name:'',
 			group: '',
 			year: '',
 			phone: '',
-			email:''
+			email: '',
+
 		})
 	}
 	if (loader) {
