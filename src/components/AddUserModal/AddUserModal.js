@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from "axios";
+import 'boxicons'
 
 const AddUserModal = ({students, setStudents, setOpenModal, editingUser, setEditingUser}) => {
 	// const [updateUserId, setUpdateUserId] = useState(null)
@@ -16,9 +17,8 @@ const AddUserModal = ({students, setStudents, setOpenModal, editingUser, setEdit
 		const updateStudentList = students.map(item => item.id === editingUser.id ? updatedUser : item)
 		setStudents(updateStudentList)
 		setOpenModal(false)
-		setInfoStudent({
-			name: ''
-		})
+		setEditingUser(null)
+
 	}
 	const handleChange = (e) => {
 		setInfoStudent({...infoStudent, [e.target.name]: e.target.value})
@@ -32,14 +32,21 @@ const AddUserModal = ({students, setStudents, setOpenModal, editingUser, setEdit
 	}
 	return (
 			<div className='fixed justify-center flex w-full bg-white p-6 '>
-				<div className='absolute right-9 top-9 cursor-pointer' onClick={() => {
+				<div className='absolute right-1/3 top-14 cursor-pointer text-pink-500' onClick={() => {
 					setOpenModal(false)
 					setEditingUser(null)
-				}}>x
+				}}>
+					<box-icon name='x-circle' type='solid' color='#b606da' ></box-icon>
+
 				</div>
-				<form onSubmit={editingUser ? updateUser : handleSubmit} className='mb-10 mt-10 w-full'>
-					<div className='flex items-center container mx-auto'>
-						<div className="grid bg-white rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-1/2">
+				<form onSubmit={editingUser ? updateUser : handleSubmit} className='mb-10 mt-10 '>
+					<div className='flex items-center container ml-auto'>
+						<div className="grid bg-white rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-auto">
+							<div className="flex justify-center py-4">
+								<div className="flex md:p-4 p-2">
+									<img src="https://1000logos.net/wp-content/uploads/2017/02/Colors-Harvard-Logo.jpg" width={100} alt=""/>
+								</div>
+							</div>
 							<div className="flex justify-center">
 								<div className="flex">
 									<h1 className="text-gray-600 font-bold md:text-2xl text-xl">Добавить студента</h1>
