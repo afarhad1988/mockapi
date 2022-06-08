@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import AddUserModal from "./components/AddUserModal/AddUserModal";
 import axios from "axios";
+import Spinner from "./components/Spinner";
 
 const App = () => {
 	const [students, setStudents] = useState([])
@@ -24,7 +25,7 @@ const App = () => {
 		setOpenModal(true)
 	}
 	if (loader) {
-		return "Loading...."
+		return <Spinner/>
 	}
 	return (
 			<div className='app'>
@@ -33,7 +34,8 @@ const App = () => {
 							<AddUserModal setOpenModal = {setOpenModal} students={students} setStudents={setStudents} editingUser={editingUser} setEditingUser={setEditingUser}/>
 				}
 				<button onClick={() => setOpenModal(true)}
-						className="rounded-xl border  py-1 px-4 text-primary inline-blockrounded bg-fuchsia-700 hover:bg-fuchsia-600 hover:text-black text-white my-6">
+						className="mt-52 mb-6 rounded-xl border  py-1 px-4 text-primary inline-blockrounded bg-fuchsia-700 hover:bg-fuchsia-600 hover:text-black text-white my-6">
+
 					Добавить студента
 				</button>
 
