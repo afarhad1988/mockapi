@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import AddUserModal from "./components/AddUserModal/AddUserModal";
 import axios from "axios";
 import Spinner from "./components/Spinner";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 	const [students, setStudents] = useState([])
@@ -19,6 +21,7 @@ const App = () => {
 		await axios.delete(`https://6298e09cf2decf5bb74d8896.mockapi.io/students/${id}`)
 		const studentsList = students.filter(item => item.id !== id)
 		setStudents(studentsList)
+		toast("Student was deleted")
 	}
 	const handleEdit =(student)=>{
 		setEditingUser(student)
