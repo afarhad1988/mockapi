@@ -1,8 +1,9 @@
-import React,  from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from "axios";
 import 'boxicons'
+import {toast, ToastContainer} from "react-toastify";
 
 
 
@@ -20,7 +21,7 @@ const AddUserModal = ({students, setStudents, setOpenModal, editingUser, setEdit
 		},
 		validationSchema: Yup.object({
 			name: Yup.string()
-					.max(15, 'Must be 15 characters or less')
+					.max(20, 'Must be 15 characters or less')
 					.required('Введите данные'),
 			group: Yup.string()
 					.max(20, 'Must be 20 characters or less')
@@ -34,13 +35,15 @@ const AddUserModal = ({students, setStudents, setOpenModal, editingUser, setEdit
 			email: Yup.string().email('Invalid email address').required('Введите данные'),
 		}),
 		onSubmit: async (values) => {
-			if(editingUser.name){
+			if(editingUser){
 				const {data: updateUser} = await axios.put(`https://6298e09cf2decf5bb74d8896.mockapi.io/students/${editingUser.id}`, values)
-				const updateStudentsList = students.map((item => item.id === editingUser.id ? updateUser : item))
+				const updateStudentsList = students.map(item => item.id === editingUser.id ? updateUser : item)
 				setStudents(updateStudentsList)
+				toast.success("Change information about student")
 			} else{
 				const uploadUser = await axios.post('https://6298e09cf2decf5bb74d8896.mockapi.io/students', values)
 				setStudents([...students, uploadUser.data])
+				toast.success("Add new student")
 
 			}
 			setOpenModal(false)
@@ -121,6 +124,7 @@ const AddUserModal = ({students, setStudents, setOpenModal, editingUser, setEdit
 						</div>
 					</div>
 				</form>
+				<ToastContainer/>
 			</div>
 	);
 };

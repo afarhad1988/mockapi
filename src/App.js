@@ -21,7 +21,7 @@ const App = () => {
 		await axios.delete(`https://6298e09cf2decf5bb74d8896.mockapi.io/students/${id}`)
 		const studentsList = students.filter(item => item.id !== id)
 		setStudents(studentsList)
-		toast("Student was deleted")
+		toast.success("Student was deleted")
 	}
 	const handleEdit =(student)=>{
 		setEditingUser(student)
@@ -107,6 +107,7 @@ const App = () => {
 
 					</tbody>
 				</table>
+				<ToastContainer/>
 			</div>
 	);
 };
