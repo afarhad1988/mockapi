@@ -36,12 +36,12 @@ const AddUserModal = ({students, setStudents, setOpenModal, editingUser, setEdit
 		}),
 		onSubmit: async (values) => {
 			if(editingUser){
-				const {data: updateUser} = await axios.put(`https://6298e09cf2decf5bb74d8896.mockapi.io/students/${editingUser.id}`, values)
+				const {data: updateUser} = await axios.put(`https://62b5c76442c6473c4b3a22da.mockapi.io/students/${editingUser.id}`, values)
 				const updateStudentsList = students.map(item => item.id === editingUser.id ? updateUser : item)
 				setStudents(updateStudentsList)
 				toast.success("Change information about student")
 			} else{
-				const uploadUser = await axios.post('https://6298e09cf2decf5bb74d8896.mockapi.io/students', values)
+				const uploadUser = await axios.post('https://62b5c76442c6473c4b3a22da.mockapi.io/students', values)
 				setStudents([...students, uploadUser.data])
 				toast.success("Add new student")
 

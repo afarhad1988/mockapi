@@ -11,14 +11,14 @@ const App = () => {
 	const [openModal, setOpenModal] = useState(false)
 	const [editingUser, setEditingUser] = useState(null)
 	useEffect(() => {
-		axios.get('https://6298e09cf2decf5bb74d8896.mockapi.io/students')
+		axios.get('https://62b5c76442c6473c4b3a22da.mockapi.io/students')
 				.then((res) => {
 					setStudents(res.data)
 					setIsLoader(false)
 				})
 	}, [])
 	const deleteUser = async (id) => {
-		await axios.delete(`https://6298e09cf2decf5bb74d8896.mockapi.io/students/${id}`)
+		await axios.delete(`https://62b5c76442c6473c4b3a22da.mockapi.io/students/${id}`)
 		const studentsList = students.filter(item => item.id !== id)
 		setStudents(studentsList)
 		toast.success("Student was deleted")
@@ -108,7 +108,9 @@ const App = () => {
 					</tbody>
 				</table>
 				<ToastContainer/>
+
 			</div>
+
 	);
 };
 export default App;
